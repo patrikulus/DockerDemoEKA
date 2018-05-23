@@ -3,9 +3,9 @@ WORKDIR /app
 EXPOSE 80
 
 FROM microsoft/aspnetcore-build:2.0 AS build
-COPY . /src/DockerDemo
-RUN dotnet restore /src/DockerDemo/DockerDemo.csproj
 WORKDIR /src/DockerDemo
+COPY . .
+RUN dotnet restore DockerDemo.csproj
 RUN dotnet build DockerDemo.csproj -c Release -o /app
 
 FROM build AS publish
